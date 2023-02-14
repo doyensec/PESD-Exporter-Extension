@@ -1,16 +1,16 @@
 # PESD Format
 
-"Proxy Enriched Sequence Diagrams" is a simple format designed to laverage 
-[MermaidJS](https://github.com/mermaid-js/mermaid) technology and link it with fine-grained web traffic parsing to visualize and explore http traffic in a new way.
+"Proxy Enriched Sequence Diagrams" is a simple format designed to leverage 
+[MermaidJS](https://github.com/mermaid-js/mermaid) technology and link it with fine-grained web traffic parsing, to visualize and explore HTTP traffic in a new way.
 
 ## PESD Format
-PESD is a diagramming format designed to visualize Web traffic and store parsed information usable for traffic analysis automation. It was created to reduce the efforts of IT / Security Professionals when dealing with the complexity of functional flows in modern web applications.  
+PESD is a diagramming format designed to visualize web traffic and store parsed information, usable for traffic analysis automation. It was created to reduce the efforts of IT / Security professionals when dealing with the complexity of functional flows in modern web applications.  
 
 Some key characteristics of the format :
-- Enable `visual-analysis`, especially useful for complex Application Flows in multi-actor scenarios
-- `Tester-specific syntax` in order to facilitate the analysis;
+- Enable `visual-analysis`, especially useful for complex application flows in multi-actor scenarios
+- `Tester-specific syntax` in order to facilitate the analysis
 - Carry parsed metadata from the web traffic to `enable further automation of the analysis`
-- Be `usable for reporting` purposes like documentation of current implementations or Proof Of Concepts
+- Be `usable for reporting` purposes like documentation of current implementations or Proofs Of Concept
 
 ### Exports
 A PESD export is composed of three elements :
@@ -27,7 +27,7 @@ MermaidJS rendered markdown:
 <img width="300" alt="pesd" src="https://user-images.githubusercontent.com/92733595/215847879-292ee8b8-4ef8-4423-84f6-3a0e5c4f1186.png">
 </p>
 
-- ***pesd.json*** , a JSON file containing parsed and raw data extracted from the traffic. This file represents the metadata of the format that enable further analysis automation and detailed flows saving
+- ***pesd.json*** , a JSON file containing parsed and raw data extracted from the traffic. This file represents the metadata of the format that enable further analysis automation and saving detailed flows
 
 ```
 {
@@ -76,7 +76,7 @@ The traffic conversion syntax was defined on top of MermaidJS markdown syntax. T
 
 Requests/responses arrows are filled with information that helps to visualize useful details of the traffic while maintaining the whole diagram readability.  
 
-Two main modes of representation for Application Flows are supported:
+Two main modes of representation for application flows are supported:
 - ***Domains as Actors*** - Each domain involved in the traffic is represented as an actor in the diagram. Suitable for multi-domain flows analysis
 Current Syntax :
 ```

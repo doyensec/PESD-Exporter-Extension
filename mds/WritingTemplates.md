@@ -4,7 +4,7 @@
 Required Steps :
 
 #### 1) Develop your template 
-In order to manipulate the pesd object you should read the [PESD Wrapper Java library](PESDWrapper.md) documentation and learn about all the exposed iteration / manipulation methods.
+In order to manipulate the PESD object you should read the [PESD Wrapper Java library](PESDWrapper.md) documentation and learn about all the exposed iteration / manipulation methods.
 
 Templates must inherit from **TemplateParent** and override the *Run* method. The engine will construct all the templates and save them in a TemplateParent var, then it will call the *Run* method to manipulate the *PESDWrapper* object.
 
@@ -34,7 +34,7 @@ public class EmptyTemplate extends TemplateParent{
 ```
 
 #### 2) Adding the new Template Class to the Burp extension
-1. Modify PESDPanel.java by adding the a checkbox for your template
+1. Modify PESDPanel.java by adding the checkbox for your template
 
 2. Modify PESDPanel.java:45 and add your template name to the String array of templates
    ```
@@ -47,9 +47,9 @@ YOUR_TEMPLATE_checkbox.setVisible(false);
 YOUR_TEMPLATE_checkbox.doClick();
 ```
 
-4. In PESDPanel.java, modify *EditTemplates_ButtonActionPerformed* method by adding *your_template_checkbox.setVisible()* with false for the **if** and true for the **else** case.
+4. In PESDPanel.java, modify the *EditTemplates_ButtonActionPerformed* method by adding *your_template_checkbox.setVisible()* with false for the **if** and true for the **else** case.
 
-5. In PESDPanel.java, fill *YOUR_TEMPLATE_checkboxActionPerformed()* method as follows
+5. In PESDPanel.java, fill the *YOUR_TEMPLATE_checkboxActionPerformed()* method as follows
 ```
 private void YOUR_TEMPLATE_checkboxActionPerformed(java.awt.event.ActionEvent evt) {                                                           
         if (SAML_SSO_TEMPLATE_checkbox.isSelected()){
@@ -68,9 +68,9 @@ case "MY_NEW_TEMPLATE_NAME":
     break;
 ```
 
-7. When you are done with coding, name and save your template inside the templates package directory.
+7. When you are done with coding, name and save your template inside the template's package directory.
 
-8. Re-build the Extension and you are ready to go. What a long journey!
+8. Re-build the extension and you are ready to go. What a long journey!
 
 
 ## Example Template :  Flow-wide Frame Add
