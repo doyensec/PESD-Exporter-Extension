@@ -1,0 +1,35 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'net.portswigger.burp.extender:burp-extender-api:2.3'
+    implementation 'org.apache.commons:commons-lang3:3.5'
+    implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.1'
+    implementation group: 'org.json', name: 'json', version: '20210307'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+        resources {
+            srcDir 'resources'
+        }
+    }
+}
+
+task fatJar(type: Jar) {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    baseName = project.name + '-all'
+    from { configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+compileJava {
+    targetCompatibility '1.8'
+    sourceCompatibility '1.8'
+}
