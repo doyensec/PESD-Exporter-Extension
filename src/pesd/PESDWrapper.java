@@ -507,7 +507,8 @@ public class PESDWrapper {
     }
 
     public String escapeMermaid(String input) {
-
+        // encoding segments to avoid renderization errors
+        
         String[] segments = input.split("/");
         if (segments.length == 0) {
             return "/";
@@ -521,7 +522,9 @@ public class PESDWrapper {
     }
 
     public String pathMapper(String path) {
-
+        // the function splits the path and checks if segments contain UUIDs or pseudorandom strings.
+        // If spotted they are added to an internal map for future occurrences and substituted with placeholders in the returned string
+        
         String[] segments = path.split("/");
         if (segments.length == 0) {
             return "/";
@@ -542,6 +545,7 @@ public class PESDWrapper {
     }
 
     public String substituteMask(String segment) {
+        // returns the needed placeholder according to the passed rand 
         if (uuidTest(segment)) {
             return String.format("<UUID_%d>", this.mappings.get(segment));
         } else {
@@ -559,10 +563,9 @@ public class PESDWrapper {
     }
 
     public Boolean maskTest(String input) {
-        // A path segment is a part in a path separated by /
-        // So it’s basically A–Z, a–z, 0–9, -, ., _, ~, !, $, &, ', (, ), *, +, ,, ;, =, :, @, as well as % that must be followed by two hexadecimal digits. Any other character/byte needs to be encoded using the percent-encoding.
-        //Although these are 79 characters in total that can be used in a path segment literally, some user agents do encode some of these characters as well (e.g. %7E instead of ~). 
-        // That’s why many use just the 62 alphanumeric characters (i.e. A–Z, a–z, 0–9) or the Base 64 Encoding with URL and Filename Safe Alphabet (i.e. A–Z, a–z, 0–9, -, _).
+        // this function is used to evaluate the presence of a pseudorandom string in a UTL path segment
+        // The simple approach combines three elements: Shannon entropy + sliding charset len + segment len
+
         int numChars = 0;
         int upper = 0, lower = 0, number = 0, special = 0;
 
