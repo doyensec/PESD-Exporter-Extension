@@ -97,7 +97,7 @@ public class EmptyTemplate extends TemplateParent{
 			
 			// adding and Alt/end flow frame to wrap the entire flow
             if(pesdObj.getIterator()==0){
-				pesdObj.addFlag("HELLO PESD FLOW FRAME");
+				pesdObj.addAlt("HELLO PESD FLOW FRAME");
 			} else if (pesdObj.getIterator() == pesdObj.getSize()-1) {
 				pesdObj.endAlt(pesdObj.getIterator()+1);
 			}
