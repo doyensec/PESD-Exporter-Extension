@@ -8,9 +8,9 @@
 
 Generate security-oriented sequence diagrams and fine-grained parsed traffic from Burp Suite Proxy history.  
 
-This extension is based on Proxy Enriched Sequence Diagrams format.
-
+This extension is based on the Proxy Enriched Sequence Diagrams (PESD) format.
 Discover the format [here](mds/Format.md) and read the launch post on our [doyensec blog](https://blog.doyensec.com/2023/02/14/pesd-extension-public-release.html).
+
 <p align="center">
 <img width="1000" alt="extension" src="https://github.com/doyensec/PESD-Exporter-Extension/blob/main/images/burptopesd.gif">
 </p>
