@@ -563,7 +563,7 @@ public class PESDWrapper {
     }
 
     public Boolean maskTest(String input) {
-        // this function is used to evaluate the presence of a pseudorandom string in a UTL path segment
+        // this function is used to evaluate the presence of a pseudorandom string in a URL path segment
         // The simple approach combines three elements: Shannon entropy + sliding charset len + segment len
 
         int numChars = 0;

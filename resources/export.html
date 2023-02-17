@@ -212,6 +212,17 @@
                 renderMermaid();
             }
 
+            function notesopt() {
+                if (!notes && md_opted.includes("Note right of Browser")) {
+                    let filteredArray = md_opted.split("\n").filter(function (item) {
+                        return !item.startsWith("Note right of Browser");
+                    });
+                    return filteredArray.join("\n");
+                } else {
+                    return md_opted;
+                }
+            }
+
             function save(type) {
                 var name = document.getElementsByTagName("input")[0].value;
                 if (name === "") {
@@ -219,20 +230,21 @@
                 } else {
                     name += "_pesd." + type;
                 }
-                var types = {
-                    "svg": document.getElementById('seqdiagram').innerHTML,
-                    "md": txt,
-                    "json": json
-                }
                 if (type == "svg") {
                     var saveSvg = function (svgCode) {
                         var blob = new Blob([svgCode],
                                 {type: "data:image/svg+xml;charset=utf-8"});
                         saveAs(blob, name);
                     };
-                    mermaid.mermaidAPI.render(id, md_opted, saveSvg);
+                    mermaid.mermaidAPI.render(id, notesopt(), saveSvg);
                 } else {
-                    var blob = new Blob([types[type]],
+                    var saveme;
+                    if (type == "json"){
+                        saveme = JSON.stringify(json);
+                    } else {
+                        saveme = notesopt();
+                    }
+                    var blob = new Blob([saveme],
                             {type: "text/plain;charset=utf-8"});
                     saveAs(blob, name);
                 }
@@ -255,16 +267,7 @@
 
                 var element = document.querySelector("#seqdiagram");
 
-                if (!notes && md_opted.includes("Note right of Browser")) {
-                    let filteredArray = md_opted.split("\n").filter(function (item) {
-                        return !item.startsWith("Note right of Browser");
-                    });
-                    render_md = filteredArray.join("\n");
-                } else {
-                    render_md = md_opted;
-                }
-                
-                await mermaid.mermaidAPI.render(id, render_md, insertSvg, element);
+                await mermaid.mermaidAPI.render(id, notesopt(), insertSvg, element);
 
                 animateCSS('messageText', 'fadeIn', 'class', '0.5');
                 animateCSS('actor', 'fadeIn', 'class', '0.5');
