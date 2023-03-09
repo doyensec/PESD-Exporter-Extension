@@ -24,9 +24,11 @@ sourceSets {
 
 task fatJar(type: Jar) {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
-    baseName = project.name + '-all'
+    archiveFileName = "${project.name}-all.jar"
     from { configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
+    into('') {
+        from(sourceSets.main.output) // include classes from this project
+    }
 }
 
 compileJava {
