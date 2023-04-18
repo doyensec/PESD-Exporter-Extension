@@ -36,6 +36,9 @@ public class TemplateRunner {
                 case "SAML_SSO":
                     this.template = new SAML_SSO_Template(this.templates_results[i], stdout);
                     break;
+                case "GQL":
+                    this.template = new GQL_Template(this.templates_results[i], stdout);
+                    break;
                 default:
                     this.template = null;
                     break;

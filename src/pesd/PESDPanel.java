@@ -43,7 +43,7 @@ public class PESDPanel extends javax.swing.JPanel {
         // Bools index: 0=HasUrlParams, 1=HasBodyParam, 2=HasJsonParam, 3=HasXmlParam, 4=HasMultipartAttr, 5=HasAuthz, 6=Content-type, 7=CookiesSet, 8=HasCORS, 9=HasXFrameOp, 10=HasCSP, 11=HasCookies
         Boolean PramBools[] = new Boolean[]{false, false, false, false, false, false, false, false, false, false, false, false};
         this.Bools = PramBools;
-        this.Templates = new String[]{"SAML_SSO", "OAuth2/OIDC"};
+        this.Templates = new String[]{"SAML_SSO", "OAuth2/OIDC", "GQL"};
         // hiding checkboxes
         HasJsonParam_checkbox.setVisible(false);
         HasJsonParam_checkbox.doClick();
@@ -76,6 +76,8 @@ public class PESDPanel extends javax.swing.JPanel {
         OAuth2_OIDC_TEMPLATE_checkbox.doClick();
         SAML_SSO_TEMPLATE_checkbox.setVisible(false);
         SAML_SSO_TEMPLATE_checkbox.doClick();
+        GQL_TEMPLATE_checkbox.setVisible(false);
+        GQL_TEMPLATE_checkbox.doClick();
         autoExport_check.doClick();
         //setting automatically by default all booleans to true via Analysis preset
         booleansPresets_ComboBox.setSelectedIndex(0);
@@ -121,6 +123,7 @@ public class PESDPanel extends javax.swing.JPanel {
         EditTemplates_Button = new javax.swing.JButton();
         OAuth2_OIDC_TEMPLATE_checkbox = new javax.swing.JCheckBox();
         SAML_SSO_TEMPLATE_checkbox = new javax.swing.JCheckBox();
+        GQL_TEMPLATE_checkbox = new javax.swing.JCheckBox();
 
         PESDExport_button.setText("PESD Export");
         PESDExport_button.addActionListener(new java.awt.event.ActionListener() {
@@ -283,6 +286,13 @@ public class PESDPanel extends javax.swing.JPanel {
             }
         });
 
+        GQL_TEMPLATE_checkbox.setText("GQL");
+        GQL_TEMPLATE_checkbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GQL_TEMPLATE_checkboxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -310,7 +320,8 @@ public class PESDPanel extends javax.swing.JPanel {
                                         .addComponent(booleansPresets_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(EditBools_Button))
-                                    .addComponent(SAML_SSO_TEMPLATE_checkbox))))
+                                    .addComponent(SAML_SSO_TEMPLATE_checkbox)
+                                    .addComponent(GQL_TEMPLATE_checkbox))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
@@ -393,7 +404,9 @@ public class PESDPanel extends javax.swing.JPanel {
                                 .addGap(6, 6, 6)
                                 .addComponent(OAuth2_OIDC_TEMPLATE_checkbox)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(SAML_SSO_TEMPLATE_checkbox))
+                                .addComponent(SAML_SSO_TEMPLATE_checkbox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(GQL_TEMPLATE_checkbox))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(HasBodyParam_checkbox)
                                 .addGap(6, 6, 6)
@@ -717,9 +730,11 @@ public class PESDPanel extends javax.swing.JPanel {
         if (SAML_SSO_TEMPLATE_checkbox.isVisible()) {
             SAML_SSO_TEMPLATE_checkbox.setVisible(false);
             OAuth2_OIDC_TEMPLATE_checkbox.setVisible(false);
+            GQL_TEMPLATE_checkbox.setVisible(false);
         } else {
             SAML_SSO_TEMPLATE_checkbox.setVisible(true);
             OAuth2_OIDC_TEMPLATE_checkbox.setVisible(true);
+            GQL_TEMPLATE_checkbox.setVisible(true);
         }
     }//GEN-LAST:event_EditTemplates_ButtonActionPerformed
 
@@ -738,6 +753,15 @@ public class PESDPanel extends javax.swing.JPanel {
             this.Templates[1] = "";
         }
     }//GEN-LAST:event_OAuth2_OIDC_TEMPLATE_checkboxActionPerformed
+
+    private void GQL_TEMPLATE_checkboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GQL_TEMPLATE_checkboxActionPerformed
+        // TODO add your handling code here:
+        if (GQL_TEMPLATE_checkbox.isSelected()) {
+            this.Templates[2] = "GQL";
+        } else {
+            this.Templates[2] = "";
+        }
+    }//GEN-LAST:event_GQL_TEMPLATE_checkboxActionPerformed
 
     public int setItems(IHttpRequestResponse[] newItems, Integer opMode) {
         // called from BurpExtender.java to set selected items and operation mode in the panel
@@ -777,6 +801,7 @@ public class PESDPanel extends javax.swing.JPanel {
     private javax.swing.JCheckBox CookiesSet_checkbox;
     private javax.swing.JButton EditBools_Button;
     private javax.swing.JButton EditTemplates_Button;
+    private javax.swing.JCheckBox GQL_TEMPLATE_checkbox;
     private javax.swing.JCheckBox HasAuthz_checkbox;
     private javax.swing.JCheckBox HasBodyParam_checkbox;
     private javax.swing.JCheckBox HasCORS_checkbox;

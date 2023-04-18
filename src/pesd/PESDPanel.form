@@ -46,6 +46,7 @@
                                       <Component id="EditBools_Button" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="SAML_SSO_TEMPLATE_checkbox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="GQL_TEMPLATE_checkbox" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -153,6 +154,8 @@
                               <Component id="OAuth2_OIDC_TEMPLATE_checkbox" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="SAML_SSO_TEMPLATE_checkbox" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="GQL_TEMPLATE_checkbox" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="HasBodyParam_checkbox" min="-2" max="-2" attributes="0"/>
@@ -412,6 +415,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SAML_SSO_TEMPLATE_checkboxActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="GQL_TEMPLATE_checkbox">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="GQL"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GQL_TEMPLATE_checkboxActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
