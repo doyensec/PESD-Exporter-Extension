@@ -1,12 +1,5 @@
 /*
- * This template is based on the following specification documents:
- * http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0-cd-02.html#5.1.Web%20Browser%20SSO%20Profile|outline
- * iin particular on section "5.1 Web Browser SSO Profile"
- * The section describes the typical flows likely to be used with the web browser SSO profile of SAML V2.0.
- * message flows involved in web SSO exchanges for the following use case scenarios:
- * - SP-initiated SSO using a Redirect Binding for the SP-to-IdP <AuthnRequest> message and a POST Binding for the IdP-to-SP <Response> message
- * - SP-initiated SSO using a POST Binding for the <AuthnRequest> message and an Artifact Binding for the <Response> message
- * - IDP-initiated SSO using a POST Binding for the IdP-to-SP <Response> message; no SP-to-IdP <AuthnRequest> message is involved.
+ * This template attempts to add some GraphQL annotations to the output
  */
 package pesd;
 
