@@ -104,4 +104,4 @@ This project was made with love in the [Doyensec Research island](https://doyens
 
 	
 
-![alt text](https://doyensec.com/images/logo.svg "Doyensec Logo")
+<img src='images/doyensec_logo.png' height='40px' alt='Doyensec Research'>
