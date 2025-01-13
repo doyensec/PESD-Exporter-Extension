@@ -28,9 +28,11 @@ public class PESDExporter {
     private String metadata;
     private JSONObject metadataObj;
     private String[] templates;
+    private IBurpExtenderCallbacks callbacks;
 
     public PESDExporter(IBurpExtenderCallbacks callbacks, IExtensionHelpers helpers, IHttpRequestResponse[] allReqRes, PrintWriter stdout, PrintWriter stderr, Integer mode, Boolean[] syntaxBools, String[] templates) {
         this.helpers = helpers;
+        this.callbacks = callbacks;
         this.allReqRes = allReqRes;
         this.stdout = stdout;
         // op. mode = 0 -> Domains as Actors , op. mode = 1 -> Endpoints as Actors
@@ -44,7 +46,7 @@ public class PESDExporter {
     public String[] generatePESD() {
         JSONObject csp_res;
         String CSP = "";
-        PESDWrapper pesdObj = new PESDWrapper(this.stdout);
+        PESDWrapper pesdObj = new PESDWrapper(this.stdout, this.callbacks);
         // PESDMetaData will handle data addition to the metadata
         PESDMetaData metadataObj = new PESDMetaData(this.helpers);
         //Looping over all req/res couples (items) and converting them to PESD markdown and metadata

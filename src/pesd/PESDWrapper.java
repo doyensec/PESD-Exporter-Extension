@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
+import burp.IBurpExtenderCallbacks;
 import org.json.JSONObject;
 import org.json.JSONArray;
 
@@ -21,10 +22,13 @@ public class PESDWrapper {
     private boolean iterating;
     private HashMap<String, Integer> mappings;
     private final PrintWriter stdout;
+    private IBurpExtenderCallbacks callbacks;
 
-    public PESDWrapper(PrintWriter stdout) {
+    public PESDWrapper(PrintWriter stdout, IBurpExtenderCallbacks callbacks) {
         // main constructor 
         this.stdout = stdout;
+        this.callbacks = callbacks;
+        
         try {
             this.data = new JSONArray();
             this.iterator = 0;
@@ -54,8 +58,9 @@ public class PESDWrapper {
         //Note about op_mode:
         // 0 <- Domains as Actors
         // 1 <- Endpoints as Actors
-        String seq_diagram_md = "%% This file contains a Sequence Diagram defined with MermaidJS Markdown syntax (see https://mermaid-js.github.io/)%%\n%%{init: {'theme': 'base', 'themeVariables': {'actorBorder':'#808486','actorTextColor':'#34343b','primaryColor': '#fa9b35'}}}%%\nsequenceDiagram\n";
-        String seq_diagram_md_masked = "%% This file contains a Sequence Diagram defined with MermaidJS Markdown syntax (see https://mermaid-js.github.io/)%%\n%%{init: {'theme': 'base', 'themeVariables': {'actorBorder':'#808486','actorTextColor':'#34343b','primaryColor': '#fa9b35'}}}%%\nsequenceDiagram\n";
+        
+        String seq_diagram_md = "sequenceDiagram\n";
+        String seq_diagram_md_masked = "sequenceDiagram\n";
         this.startIterator();
         try {
         while (this.iterator != -1) {
