@@ -16,41 +16,34 @@ Discover the format [here](mds/Format.md) and read the launch post on our [doyen
 </p>
 The exporter handles Burp Suite Proxy's traffic conversion to PESD format and offers the possibility to execute templates that will enrich the resulting exports.
 
-## Extension UI 
-<p align="left">
-<img width="550" alt="extension" src="https://user-images.githubusercontent.com/92733595/215848801-3cff0ba6-cab8-4f0f-8cdc-6441ba83c9cc.png">
-</p>
+## Extension Usage 
 
-- Select and send specific traffic entries from Burp Suite Tabs to the Exporter tab
+Select and send specific traffic entries from Burp Suite Tabs to the Exporter tab. 
 
-- Specify a mode of operation for the export. Supported modes :
-	- ***Domains as Actors*** - Each domain involved in the traffic is represented as an actor in the diagram. Suitable for multi-domain flows analysis
-	- ***Endpoints as Actors*** - Each endpoint (path) involved in the traffic is represented as an actor in the diagram. Suitable for single-domain flows analysis
+Specify a mode of operation for the export:
 
-- Configure the flags set that will be matched in the generation of the sequence diagram. Read about flags in the format definition page, section ["Base Diagram Syntaxes" ](mds/Format.md#flags)
+- **Domains as Actors** - Each domain involved in the traffic is represented as an actor in the diagram. Suitable for multi-domain flows analysis
+- **Endpoints as Actors** - Each endpoint (path) involved in the traffic is represented as an actor in the diagram. Suitable for single-domain flows analysis
 
-- Select the templates that will be executed on the resulting export. Read more about templates in the following section
-
-- Auto-Export. Checked by default, sending items to the extension will directly result in a export.
-  User is redirected to the Browser view and the items are cleaned after the export within the extension
+Auto-Export is enabled by default, sending items to the extension will directly result in a export. User is redirected to the Browser view and the items are cleaned after the export within the extension
 
 ## Export Capabilities
 
-
-<p align="center">
-<img width="600" alt="extension" src="https://github.com/doyensec/PESD-Exporter-Extension/blob/main/images/export.gif">
-</p>
-
--   **Expandable Metadata**. Underlined flags can be clicked to show the underlying metadata from the traffic in a scrollable popover
+- **Expandable Metadata**. Underlined flags can be clicked to show the underlying metadata from the traffic in a scrollable popover
     
--   **Masked Randoms in URL Paths**. UUIDs and pseudorandom strings recognized inside path segments are mapped to variable names `<UUID_N>` / `<VAR_N>`. The re-renderization will reshape the diagram to improve flow readability. Every occurrency with the same value maintains the same name
+- **Masked Randoms in URL Paths**. UUIDs and pseudorandom strings recognized inside path segments are mapped to variable names `<UUID_N>` / `<VAR_N>`. The re-renderization will reshape the diagram to improve flow readability. Every occurrency with the same value maintains the same name
   
 - **Notes**. Comments from Burp Suite are converted to notes in the resulting diagram. Use `<br>` in Burp Suite comments to obtain multi-line notes in PESD exports
-  
--   **Save as** :
-    -   Sequence Diagram in `SVG` format
-    -   `Markdown` file (MermaidJS syntax),
-    -   Traffic `metadata` in `JSON` format. Read about the metadata structure in the format definition page, ["exports section"](https://github.com/doyensec/PESD-Exporter-Extension/blob/main/mds/Format.md#exports)
+
+- **Theme**. Use [MermaidJS theme](https://mermaid.js.org/config/theming.html?#theme-variables) veriables to build your own sequence diagram style set in the extension
+
+- **Embedded MD editor**. Edit the generated diagram directly in the export to add details (e.g. internal calls to microservices, notes, everything allowed by mermaid JS)
+
+- **Highlight colors from Burpsuite** are ported to the sequence diagram arrow colors
+
+- **Invert Proxy History order**. If you have the last request on top, activate it
+
+- **Save as** : `SVG`, `Markdown`, `JSON` metadata, explorable `HTML`
     
 ## Extending the diagram, syntax and metadata with Templates
 
