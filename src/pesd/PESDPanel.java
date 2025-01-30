@@ -87,18 +87,18 @@ public class PESDPanel extends javax.swing.JPanel {
         cleanafterexpButton.setToolTipText("Remove HTTP Requests from the extension after generation");
         boolsButton.setToolTipText("Set HTTP traffic booleans in the generated PESD. E.g. HasUrlParams, HasBodyParam, HasCORS etc.");
         
-        if(!"false".equals(callbacks.loadExtensionSetting("autoOpt"))){
+        if(!"false".equals(String.valueOf(callbacks.loadExtensionSetting("autoOpt")))){
             autoExpButton.setSelected(true);
         }
-        if("true".equals(callbacks.loadExtensionSetting("invertOpt"))){
+        if("true".equals(String.valueOf(callbacks.loadExtensionSetting("invertOpt")))){
             invertOrderButton.setSelected(true);
         }
         
-        if(!"false".equals(callbacks.loadExtensionSetting("cleanOpt"))){
+        if(!"false".equals(String.valueOf(callbacks.loadExtensionSetting("cleanOpt")))){
             cleanafterexpButton.setSelected(true);
         }
         
-        if(!"false".equals(callbacks.loadExtensionSetting("flagsOpt"))){
+        if(!"false".equals(String.valueOf(callbacks.loadExtensionSetting("flagsOpt")))){
             boolsButton.setSelected(true);
         }
         
@@ -149,6 +149,10 @@ public class PESDPanel extends javax.swing.JPanel {
                 }
             }
         });
+        
+        if ("null".equals(String.valueOf(callbacks.loadExtensionSetting("theme")))) {
+            callbacks.saveExtensionSetting("theme", "%%{init: {'theme': 'base', 'themeVariables': {'actorBorder':'#808486','actorTextColor':'#34343b','primaryColor': '#fa9b35','noteBkgColor':'#3f4647','noteTextColor':'#FFFFFF','noteBorderColor':'#393e3e'}}}%%");
+        } 
     }
     
     /**
@@ -323,15 +327,15 @@ public class PESDPanel extends javax.swing.JPanel {
 
     private void PESDExport_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PESDExport_buttonActionPerformed
 
-        if((!this.inverted && "true".equals(callbacks.loadExtensionSetting("invertOpt")))){
+        if((!this.inverted && "true".equals(String.valueOf(callbacks.loadExtensionSetting("invertOpt"))))){
             ArrayUtils.reverse(this.items);
             this.inverted = true;
-        } else if(this.inverted && "false".equals(callbacks.loadExtensionSetting("invertOpt"))){
+        } else if(this.inverted && "false".equals(String.valueOf(callbacks.loadExtensionSetting("invertOpt")))){
             ArrayUtils.reverse(this.items);
             this.inverted = false;
         }
         
-        if("false".equals(callbacks.loadExtensionSetting("flagsOpt"))){
+        if("false".equals(String.valueOf(callbacks.loadExtensionSetting("flagsOpt")))){
             this.Bools = new Boolean[]{false, false, false, false, false, false, false, false, false, false, false, false};
         } else {
             this.Bools = new Boolean[]{true, true, true, true, true, true, true, true, true, false, true, true};
@@ -360,12 +364,12 @@ public class PESDPanel extends javax.swing.JPanel {
                         + "PESD->>User: Nothing personal\n"
                         + "PESD->>User: That's it \n"
                         + "Note right of Browser : Seriously");
-                response = response.replace("TEMPLATEINSERT4", callbacks.loadExtensionSetting("theme"));
+                response = response.replace("TEMPLATEINSERT4", String.valueOf(callbacks.loadExtensionSetting("theme")));
             } else {
                 response = response.replace("TEMPLATEINSERT1", this.diagrams[0].replace("`", "&#x60;"));
                 response = response.replace("TEMPLATEINSERT2", this.metadata.replace("`", "&#x60;").replace("$","\\$"));
                 response = response.replace("TEMPLATEINSERT3", this.diagrams[1].replace("`", "&#x60;"));
-                response = response.replace("TEMPLATEINSERT4", callbacks.loadExtensionSetting("theme"));
+                response = response.replace("TEMPLATEINSERT4", String.valueOf(callbacks.loadExtensionSetting("theme")));
             }
 
             File temp = File.createTempFile("exports", ".html");
@@ -382,7 +386,7 @@ public class PESDPanel extends javax.swing.JPanel {
         }
 
         // delete current items sent to the extension and set counter to 0 in the UI
-        if("true".equals(callbacks.loadExtensionSetting("cleanOpt"))){
+        if("true".equals(String.valueOf(callbacks.loadExtensionSetting("cleanOpt")))){
             IHttpRequestResponse iHttpRequestResponse[] = new IHttpRequestResponse[0];
             this.items = iHttpRequestResponse;
             setCountLabel();
@@ -416,7 +420,7 @@ public class PESDPanel extends javax.swing.JPanel {
         String deftheme = "%%{init: {'theme': 'base', 'themeVariables': {'actorBorder':'#808486','actorTextColor':'#34343b','primaryColor': '#fa9b35','noteBkgColor':'#3f4647','noteTextColor':'#FFFFFF','noteBorderColor':'#393e3e'}}}%%";
         JTextField themeField = new JTextField();
         
-        String themestr = callbacks.loadExtensionSetting("theme");
+        String themestr = String.valueOf(callbacks.loadExtensionSetting("theme"));
         if (themestr == null) {
             themeField.setText(deftheme);
         } else {
@@ -496,7 +500,7 @@ public class PESDPanel extends javax.swing.JPanel {
     }
 
     public Boolean getAutoExport() {
-        if(!"false".equals(callbacks.loadExtensionSetting("autoOpt"))){
+        if(!"false".equals(String.valueOf(callbacks.loadExtensionSetting("autoOpt")))){
             return true;
         } else {
             return false;
