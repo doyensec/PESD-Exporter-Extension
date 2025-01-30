@@ -323,15 +323,15 @@ public class PESDPanel extends javax.swing.JPanel {
 
     private void PESDExport_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PESDExport_buttonActionPerformed
 
-        if((!this.inverted && "true".equals(callbacks.loadExtensionSetting("invertOpt").toString()))){
+        if((!this.inverted && "true".equals(callbacks.loadExtensionSetting("invertOpt")))){
             ArrayUtils.reverse(this.items);
             this.inverted = true;
-        } else if(this.inverted && "false".equals(callbacks.loadExtensionSetting("invertOpt").toString())){
+        } else if(this.inverted && "false".equals(callbacks.loadExtensionSetting("invertOpt"))){
             ArrayUtils.reverse(this.items);
             this.inverted = false;
         }
         
-        if("false".equals(callbacks.loadExtensionSetting("flagsOpt").toString())){
+        if("false".equals(callbacks.loadExtensionSetting("flagsOpt"))){
             this.Bools = new Boolean[]{false, false, false, false, false, false, false, false, false, false, false, false};
         } else {
             this.Bools = new Boolean[]{true, true, true, true, true, true, true, true, true, false, true, true};
